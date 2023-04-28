@@ -51,6 +51,7 @@ router.post('/', async (req, res) => {
     healthScore,
     stepByStep,
     image,
+    price,
     diet
   } = req.body;
 
@@ -69,6 +70,7 @@ router.post('/', async (req, res) => {
         summary,
         healthScore,
         stepByStep,
+        price
       });
 
       const dietDB = await Diet.findAll({

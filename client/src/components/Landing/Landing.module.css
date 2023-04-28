@@ -1,0 +1,117 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: url('../../images/Landing.jpg');
+    background-position: center;
+    animation-name: zoomIn;
+    animation-duration: 10s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+}
+
+@keyframes zoomIn {
+    0% {
+        background-size: 100%;
+    }
+    50% {
+        background-size: 110%;
+    }
+    100% {
+        background-size: 100%;
+        background-image: url('../../images/Landing-2.jpg');
+    }
+}
+
+.p {
+    padding: .8rem;
+    text-transform: uppercase;
+    font-size: var(--fontSize-p-1);
+    font-family: var(--fontFamily-dm_sans);
+    font-weight: var(--weight-bold);
+    color: var(--color-golden);
+    letter-spacing: var(--letterSpacing-2);
+}
+
+.i {
+    width: 8rem;
+    color: var(--color-golden);
+    content: url('../../images/separator.png');
+}
+
+.h1 {
+    max-width: 70%;
+    padding-top: 6rem;
+    padding-bottom: 10rem;
+    font-size: var(--fontSize-headline-1);
+    line-height: var(--lineHeight-1);
+    font-family: var(--fontFamily-forum);
+    letter-spacing: var(--letterSpacing-5);
+    color: var(--color-white);
+}
+
+.btn {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    color: var(--color-golden);
+    font-size: var(--fontSize-btn-1);
+    font-weight: var(--weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background: transparent;
+    border: 2px solid var(--color-golden);
+    width: 15rem;
+    height: 3rem ;
+    padding: .9rem 2.5rem;
+    z-index: 1;
+}
+
+.btn::before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200%;
+    height: 200%;
+    border-radius: 50%;
+    background-color: var(--color-golden);
+    transition: .5s ease;
+    z-index: -1;
+}
+
+.btn .text {
+    transition: .250s ease;
+}
+
+.btn .text_1 {
+    position: absolute;
+    top: 34%;
+    left: 19%;
+}
+
+.btn .text_2 {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: max-content;
+    color: hsla(40, 12%, 5%, 1);
+}
+
+.btn:is(:hover, :focus-visible)::before {
+    bottom: -50%;
+}
+
+.btn:is(:hover, :focus-visible) .text_1 {
+    transform: translateY(-40px);
+}
+
+.btn:is(:hover, :focus-visible) .text_2 {
+    top: 50%;
+    transform: translate(-50%, -50%);
+}

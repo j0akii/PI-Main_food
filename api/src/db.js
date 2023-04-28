@@ -30,6 +30,27 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Para relacionarlos hacemos un destructuring
 const { Recipe, Diet } = sequelize.models;
 
+const initialDiets = [
+  { name: 'Gluten Free' },
+  { name: 'Ketogenic' },
+  { name: 'Vegetarian' },
+  { name: 'Lacto-Vegetarian' },
+  { name: 'Ovo-Vegetarian' },
+  { name: 'Vegan' },
+  { name: 'Pescetarian' },
+  { name: 'Paleolithic' },
+  { name: 'Primal' },
+  { name: 'Whole30' },
+];
+
+const add = () => {
+  sequelize.sync().then(() => {
+    Diet.bulkCreate(initialDiets)
+      .then(() => console.log('succesful'))
+      .catch((err) => console.log('error:', err))
+  });
+}
+
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 
@@ -38,5 +59,6 @@ Diet.belongsToMany(Recipe, { through: 'recipeTypes' });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
-  conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
+  conn: sequelize, // para importart la conexión { conn } = require('./db.js');
+  add,     
 };

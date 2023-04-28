@@ -17,10 +17,17 @@ const getApi = async () => {
           name: recipe.title,
           image: recipe.image,
           healthScore: recipe.healthScore,
-          diets: recipe.diets?.map((diet) => diet), 
+          price: recipe.pricePerServing,
+          diets: recipe.diets?.map((diet) => diet),
           summary: recipe.summary,
-          stepByStep: (recipe.analyzedInstructions[0] && recipe.analyzedInstructions[0].steps?recipe.analyzedInstructions[0].steps.map(item=>item.step).join(" \n"):''),
-        }
+          stepByStep:
+            recipe.analyzedInstructions[0] &&
+            recipe.analyzedInstructions[0].steps
+              ? recipe.analyzedInstructions[0].steps
+                  .map((item) => item.step)
+                  .join(" \n")
+              : "",
+        };
       })
 
       return allRecipes

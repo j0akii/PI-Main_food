@@ -1,0 +1,60 @@
+@font-face {
+    font-family: "Forum";
+    src: url("../../fonts/Forum/Forum-Regular.ttf") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+
+    /* COLORS */
+
+    /* primary-colors */
+    --color-black: #333;
+    --color-white: #dfdfdf;
+    --color-golden: #e7c88e;
+    --color-shadow: rgba(0, 0, 0, 0.4);
+
+
+    /* TYPOGRAPHY */
+
+    /* font-family */
+    --fontFamily-forum: 'Forum', cursive;
+
+    /* font-size */
+    --fontSize-display-1: calc(1.3rem + 6.7vw);
+    --fontSize-headline-1: calc(2rem + 2.5vw);
+    --fontSize-headline-2: calc(1.3rem + 2.4vw);
+    --fontSize-title-1: calc(1.6rem + 1.2vw);
+    --fontSize-title-2: 2.2rem;
+    --fontSize-title-3: 2.1rem;
+    --fontSize-title-4: calc(1.6rem + 1.2vw);
+    --fontSize-body-1: 2.4rem;
+    --fontSize-body-2: 1.6rem;
+    --fontSize-body-3: 1.8rem;
+    --fontSize-body-4: 1.6rem;
+    --fontSize-label-1: 1.4rem;
+    --fontSize-label-2: 1.2rem;
+    --fontSize-nav-1: 1rem;
+    --fontSize-btn-1: .7rem;
+    --fontSize-p-1: .6rem;
+
+    /* font-weight */
+    --weight-regular: 400;
+    --weight-bold: 700;
+
+    /* line-height */
+    --lineHeight-1: 1em;
+    --lineHeight-2: 1.2em;
+    --lineHeight-3: 1.5em;
+    --lineHeight-4: 1.6em;
+    --lineHeight-5: 1.85em;
+    --lineHeight-6: 1.4em;
+
+    /* letter-spacing */
+    --letterSpacing-1: 0.15em;
+    --letterSpacing-2: 0.4em;
+    --letterSpacing-3: 0.2em;
+    --letterSpacing-4: 0.3em;
+    --letterSpacing-5: 3px;
+}

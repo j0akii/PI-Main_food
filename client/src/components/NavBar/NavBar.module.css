@@ -1,0 +1,26 @@
+.navbar {
+    position: sticky;
+    top: 0;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+}
+
+ul {
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.navbar.sticky {
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+}

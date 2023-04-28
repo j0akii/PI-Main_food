@@ -22,7 +22,10 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     healthScore: {
-      type: DataTypes.FLOAT
+      type: DataTypes.FLOAT,
+      validate: {
+        isFloat: true,
+      }
     },
     stepByStep: {
       type: DataTypes.TEXT
