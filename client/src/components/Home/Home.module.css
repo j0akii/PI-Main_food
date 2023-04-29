@@ -1,3 +1,15 @@
 .container {
     min-height: 200vh;
+    background: url('../../images/Landing.jpg');
+}
+
+.h1 {
+    color: var(--color-white);
+    font-size: var(--fontSize-headline-1);
+    font-family: var(--fontFamily-forum);
+    padding: 10rem 5rem;
+}
+
+.p {
+    color:  var(--color-white);
 }

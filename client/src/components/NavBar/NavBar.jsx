@@ -1,12 +1,32 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import style from './NavBar.module.css';
 import Variables from '../Variables/Variables.module.css'
 import { NavLink } from 'react-router-dom';
 
-
-export default function NavBar () {
-
+export default function NavBar() {
     const [isSticky, setIsSticky] = useState(false);
+    const location = useLocation();
+    const [currentPath, setCurrentPath] = useState(location.pathname);
+    const nav = useNavigate();
+    const navigation = () => {
+        nav('/Form')
+    }
+
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    const handleMenu = () => {
+        setMenuOpen(!menuOpen);
+    };
+
+    const handleScroll = () => {
+        const scrollTop = window.pageYOffset;
+        setIsSticky(scrollTop > 10);
+    };
+
+    useEffect(() => {
+        setCurrentPath(location.pathname);
+    }, [location]);
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
@@ -15,40 +35,38 @@ export default function NavBar () {
         };
     }, []);
 
-    const handleScroll = () => {
-        if (window.scrollY > 0) {
-        setIsSticky(true);
-        } else {
-        setIsSticky(false);
-        }
-    };
+  return (
+    <header className={`${style.header} ${isSticky ? style.sticky : ''}`}>
+        <a href='#' className={style.logo}>j0aki</a>
 
-    return (
-
-        <header class={style.header}>
-            <NavLink to={'/Home'} className={style.inicio}>
-                <a href="#" class={style.logo}>j0ak!</a>
+        <nav className={`${style.navbar} ${menuOpen ? style.actual : ''}`}>
+            <NavLink to={'/Home'} className={style.link}>
+            <a className={currentPath === '/Home' ? style.act : style.a}>Home</a>
             </NavLink>
-            
-            <nav className={style.navbar}>
-                <NavLink to={'/Home'} className={style.inicio}>
-                    <a className={style.btn}>Home</a>
-                </NavLink>
-                <NavLink to={'/Recipes'} className={style.cards}>
-                    <a className={style.btn}>Recipes</a>
-                </NavLink>
-                <NavLink to={'/Diets'} className={style.favorites}>
-                    <a className={style.btn}>Diets</a>
-                </NavLink>
-                <NavLink to={'/Favorites'} className={style.favorites}>
-                    <a className={style.btn}>Favorites</a>
-                </NavLink>
-                <NavLink to={'/About'} className={style.about}>
-                    <a className={style.btn}>About</a>
-                </NavLink>
-            </nav>
+            <NavLink to={'/Recipes'} className={style.link}>
+            <a className={currentPath === '/Recipes' ? style.act : style.a}>Recipes</a>
+            </NavLink>
+            <NavLink to={'/Diets'} className={style.link}>
+            <a className={currentPath === '/Diets' ? style.act : style.a}>Diets</a>
+            </NavLink>
+            <NavLink to={'/Favorites'} className={style.link}>
+            <a className={currentPath === '/Favorites' ? style.act : style.a}>Favorites</a>
+            </NavLink>
+            <NavLink to={'/About'} className={style.link}>
+            <a className={currentPath === '/About' ? style.act : style.a}>About</a>
+            </NavLink>
 
-            {/* <div class="bx bx-menu" id="menu-icon"></div> */}
-        </header>
-    )
+
+        </nav>
+
+        <button className={style.btn} onClick={navigation}>
+            <span className={`${style.text} ${style.text_1}`}>Create Your Own!</span>
+            <span className={`${style.text} ${style.text_2} `} aria-hidden="true">Create Your Own!</span>
+        </button>
+
+        <a className={style.menu_icon} onClick={handleMenu}>
+            <i class={menuOpen ? 'bx bx-x' : 'bx bx-menu'}></i>
+        </a>
+    </header>
+  );
 }

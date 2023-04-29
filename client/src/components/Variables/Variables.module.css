@@ -7,16 +7,18 @@
 
 :root {
 
-    /* COLORS */
+    /* COLORES */
 
     /* primary-colors */
     --color-black: #333;
     --color-white: #dfdfdf;
     --color-golden: #e7c88e;
+    --color-bg: #333;
+    --color-main: #e7c88e;
     --color-shadow: rgba(0, 0, 0, 0.4);
 
 
-    /* TYPOGRAPHY */
+    /* TYPOGRAFIA */
 
     /* font-family */
     --fontFamily-forum: 'Forum', cursive;
@@ -37,10 +39,10 @@
     --fontSize-label-2: 1.2rem;
     --fontSize-nav-1: 1rem;
     --fontSize-btn-1: .7rem;
+    --fontSize-btn-2: .5rem;
     --fontSize-p-1: .6rem;
 
     /* font-weight */
-    --weight-regular: 400;
     --weight-bold: 700;
 
     /* line-height */
