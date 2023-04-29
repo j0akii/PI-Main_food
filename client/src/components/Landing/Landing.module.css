@@ -39,7 +39,7 @@
 .i {
     width: 8rem;
     color: var(--color-golden);
-    content: url('../../images/separator.png');
+    content: url('../../images/separator.svg');
 }
 
 .h1 {

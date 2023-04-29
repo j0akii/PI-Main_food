@@ -5,6 +5,7 @@ import NavBar from './components/NavBar/NavBar'
 import Recipes from './components/Recipes/Recipes'
 import About from './components/About/About'
 import Diets from './components/Diets/Diets'
+import Footer from './components/Footer/Footer'
 import { Routes, Route } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 
@@ -29,6 +30,7 @@ function App() {
 
         <Route path="/About" element={<About />} />
       </Routes>
+      {!isHomePage && <Footer />}
     </div>
   );
 }

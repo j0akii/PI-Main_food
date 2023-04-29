@@ -1,0 +1,52 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem;
+    background: url('../../images/Footer-Back.jpg');
+}
+
+.h1 {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    color: var(--color-white);
+    font-size: var(--fontSize-title-3);
+    font-family: var(--fontFamily-forum);
+}
+
+.span {
+    color: var(--color-golden);
+    font-size: var(--fontSize-title-3);
+    font-family: var(--fontFamily-forum);
+}
+
+.h3 {
+    margin: 1rem;
+    color: var(--color-white);
+    font-size: var(--fontSize-nav-1);
+    font-family: var(--fontFamily-forum);
+}
+
+.h3 a{
+    margin: 1rem;
+    color: var(--color-white);
+    font-size: var(--fontSize-nav-1);
+    font-family: var(--fontFamily-forum);
+}
+
+.h3 a:hover {
+    color: var(--color-golden);
+}
+
+@media (max-width: 732px) {
+    .h1 {
+        display: none;
+    }
+}
+
+@media (max-width: 570px) {
+    .info {
+        display: none;
+    }
+}

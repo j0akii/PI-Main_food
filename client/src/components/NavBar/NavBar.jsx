@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import style from './NavBar.module.css';
+import imgIcon from '../../images/icon.png'
 import Variables from '../Variables/Variables.module.css'
 import { NavLink } from 'react-router-dom';
 
