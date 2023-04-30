@@ -1,5 +1,11 @@
+.container {
+    padding-top: 6rem;
+    background: var(--color-black);
+}
+
 .containerCard {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
 }

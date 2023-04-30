@@ -39,7 +39,7 @@ const rootReducer = (state = initialState, actions) => {
         return {
           ...state,
           favRecipes: state.allRecipes.filter((recipe) =>
-            recipe.diet.map((diet) => diet === actions.payload)
+            recipe.diet.map((diet) => diet == actions.payload)
           ),
         };
 
@@ -57,19 +57,6 @@ const rootReducer = (state = initialState, actions) => {
             favRecipes: state.favRecipes.filter(
               (recipe) => isNaN(recipe.id) === true
             ),
-          };
-        }
-
-      case ORDERING:
-        if (actions.payload == "A") {
-          return {
-            ...state,
-            favRecipes: state.favRecipes.sort((a, b) => a.name - b.name),
-          };
-        } else if (actions.payload == "D") {
-          return {
-            ...state,
-            favRecipes: state.favRecipes.sort((a, b) => b.name - a.name),
           };
         }
 

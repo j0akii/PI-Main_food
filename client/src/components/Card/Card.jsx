@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { addFav, removeFav } from "../../redux/actions";
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import FavImage from '../../images/Favorite.png'
 
 export default function Card({
         id,
@@ -51,12 +52,12 @@ export default function Card({
       <div className={style.container}>
         <img src={image} alt='no cargo' className={style.img}/>
         {isFav ? (
-            <button className={style.fav} onClick={handleFavorite}>❤️</button>
+            <button className={style.fav} onClick={handleFavorite}><img src={FavImage} /></button>
         ) : (
-            <button className={style.fav} onClick={handleFavorite}>🤍</button>
+            <button className={style.fav} onClick={handleFavorite}><img src={FavImage} /></button>
         )}
         <h1 className={style.h1}>{name}</h1>
-        <h2 className={style.h2}>Price Per Unit: {price}</h2>
+        <h2 className={style.h2}>{price + '$'}</h2>
         <h2 className={style.h2}>Health Score: {healthScore}</h2>
         <h2 className={style.h2}>{diets.map((diet) => '#' + diet + ', ')}</h2>
         <NavLink className={style.navStyle} to={`./detail/${id}`}>

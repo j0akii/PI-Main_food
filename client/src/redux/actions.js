@@ -100,15 +100,6 @@ export const filterType = (type) => {
     };
 };
 
-// Ordenar en orden alfabetico o por healthScore:
-
-export const orderRecipes = (order) => {
-    return {
-        type: ORDERING,
-        payload: order,
-    };
-};
-
 // Boton para resetear todos los filtro:
 
 export const reset = () => {
