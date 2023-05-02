@@ -1,0 +1,99 @@
+.container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.input {
+    background: transparent;
+    border: 3px solid var(--color-golden);
+    border-right: none;
+    width: 100%;
+    height: 2.5rem;
+    color: var(--color-white);
+    font-size: var(--fontSize-title-2);
+    font-family: var(--fontFamily-forum);
+    padding-inline: 1rem;
+}
+
+.isError {
+    background: transparent;
+    border: 3px solid var(--color-golden);
+    border-right: none;
+    width: 100%;
+    height: 2.5rem;
+    color: red; 
+    font-size: var(--fontSize-title-2);
+    font-family: var(--fontFamily-forum);
+    padding-inline: 1rem;
+}
+
+.btn {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    color: var(--color-black);
+    font-size: var(--fontSize-body-2);
+    font-weight: var(--weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background: var(--color-golden);
+    border: 3px solid var(--color-golden);
+    width: 2.5rem;
+    height: 2.5rem;
+    z-index: 1;
+}
+
+.btn::before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200%;
+    height: 200%;
+    border-radius: 50%;
+    background: var(--color-black);
+    transition: .5s ease;
+    z-index: -1;
+}
+
+.btn .text {
+    transition: .250s ease;
+}
+
+.btn .text_1 {
+    position: absolute;
+    top: 10%;
+    left: 0;
+    right: 0;
+}
+
+.btn .text_2 {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: max-content;
+    color: var(--color-white);
+}
+
+.btn:is(:hover, :focus-visible)::before {
+    bottom: -50%;
+}
+
+.btn:is(:hover, :focus-visible) .text_1 {
+    transform: translateY(-40px);
+}
+
+.btn:is(:hover, :focus-visible) .text_2 {
+    top: 60%;
+    transform: translate(-50%, -50%);
+}
+
+@media (max-width: 580px) {
+    .container {
+        width: 100%;
+        margin: 0;
+    }
+}

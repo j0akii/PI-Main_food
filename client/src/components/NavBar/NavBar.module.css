@@ -43,6 +43,10 @@
     display: none;
 }
 
+.separator {
+    display: none;
+}
+
 .sticky {
     position: fixed;
     background: var(--color-bg);
@@ -118,6 +122,11 @@
 }
 
 @media (max-width: 864px) {
+    .header {
+        background: var(--color-black);
+        border-bottom: 2px solid var(--color-golden);
+    }
+
     .header .logo {
         font-size: 1.8rem;
         padding: 1.8rem;
@@ -128,6 +137,21 @@
         margin: 1rem;
         font-size: 1.8rem;
         border: none;
+    }
+
+    .link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .separator {
+        display: block;
+        width: 60%;
+        height: .5rem;
+        opacity: .6;
+        border-bottom: 2px solid var(--color-golden);
     }
 
     .menu_icon {
@@ -142,9 +166,9 @@
         position: absolute;
         top: 100%;
         width: 100%;
-        max-height: 60vh;
         background: var(--color-bg);
         box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+        border-top: 2px solid var(--color-golden);
         display: block;
     }
         

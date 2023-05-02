@@ -42,22 +42,24 @@ export default function NavBar() {
 
         <nav className={`${style.navbar} ${menuOpen ? style.actual : ''}`}>
             <NavLink to={'/Home'} className={style.link}>
-            <a className={currentPath === '/Home' ? style.act : style.a}>Home</a>
+                <a className={currentPath === '/Home' ? style.act : style.a}>Home</a>
+                <div className={style.separator}></div>
             </NavLink>
             <NavLink to={'/Recipes'} className={style.link}>
-            <a className={currentPath === '/Recipes' ? style.act : style.a}>Recipes</a>
+                <a className={currentPath === '/Recipes' ? style.act : style.a}>Recipes</a>
+                <div className={style.separator}></div>
             </NavLink>
             <NavLink to={'/Diets'} className={style.link}>
-            <a className={currentPath === '/Diets' ? style.act : style.a}>Diets</a>
+                <a className={currentPath === '/Diets' ? style.act : style.a}>Diets</a>
+                <div className={style.separator}></div>
             </NavLink>
             <NavLink to={'/Favorites'} className={style.link}>
-            <a className={currentPath === '/Favorites' ? style.act : style.a}>Favorites</a>
+                <a className={currentPath === '/Favorites' ? style.act : style.a}>Favorites</a>
+                <div className={style.separator}></div>
             </NavLink>
             <NavLink to={'/About'} className={style.link}>
-            <a className={currentPath === '/About' ? style.act : style.a}>About</a>
+                <a className={currentPath === '/About' ? style.act : style.a}>About</a>
             </NavLink>
-
-
         </nav>
 
         <button className={style.btn} onClick={navigation}>

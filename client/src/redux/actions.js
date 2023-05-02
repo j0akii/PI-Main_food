@@ -1,6 +1,8 @@
 import axios from 'axios';
 
 export const GET_ALL_RECIPES = 'GET_ALL_RECIPES';
+export const GET_ID_RECIPES = "GET_ID_RECIPES";
+export const GET_NAME_RECIPES = "GET_NAME_RECIPES";
 export const GET_ALL_DIETS = "GET_ALL_DIETS";
 export const ADD_FAV = 'ADD_FAV';
 export const REMOVE_FAV = 'REMOVE_FAV';
@@ -12,21 +14,42 @@ export const RESET = 'RESET';
 const URL_END = 'http://localhost:3001';
 
 
-// Para llamar a todas las recetas 
 
-export const getAllRecipes = () => {
-   return async (dispatch) => {
-      try {
-         const endPoint = `${URL_END}/recipes/`;
-         const response = await axios.get(endPoint);
-         return dispatch({
-            type: GET_ALL_RECIPES,
-            payload: response.data
-         });
-      } catch (error) {
-         console.log(error.message);
-      };
-   };
+// Para llamar las recetas por id
+
+export const getIdRecipes = (id) => {
+  return async (dispatch) => {
+    try {
+      const endPoint = `${URL_END}/recipes/${id}`;
+      const response = await axios.get(endPoint);
+      return dispatch({
+        type: GET_ID_RECIPES,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+// Para llamar las recetas por nombre y si no se pasa nombre se llama a todas
+
+export const getAllRecipes = (name) => {
+  return async (dispatch) => {
+    try {
+      const endPoint = name
+        ? `${URL_END}/recipes?name=${name}`
+        : `${URL_END}/recipes/`;
+      const response = await axios.get(endPoint);
+      return dispatch({
+        type: GET_NAME_RECIPES,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error.message);
+      throw error;
+    }
+  };
 };
 
 // Para llamar a todas las dietas
@@ -80,24 +103,6 @@ export const removeFav = (id) => {
          console.log(error.message);
       };
    };
-};
-
-// Filtrar por tipo de dietas:
-
-export const filterDiets = (diets) => {
-    return {
-        type: FILTER_DIETS,
-        payload: diets,
-    };
-};
-
-// Filtrar por si es creada por nosotros la receta o no:
-
-export const filterType = (type) => {
-    return {
-        type: FILTER_TYPE,
-        payload: type,
-    };
 };
 
 // Boton para resetear todos los filtro:

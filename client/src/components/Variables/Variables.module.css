@@ -10,6 +10,7 @@
     /* COLORES */
 
     /* primary-colors */
+    --color-dark: rgb(20, 20, 20);
     --color-black: #333;
     --color-white: #dfdfdf;
     --color-golden: #e7c88e;
@@ -34,8 +35,6 @@
     --fontSize-title-4: calc(1.6rem + 1.2vw);
     --fontSize-body-1: 2.4rem;
     --fontSize-body-2: 1.6rem;
-    --fontSize-body-3: 1.8rem;
-    --fontSize-body-4: 1.6rem;
     --fontSize-label-1: 1.4rem;
     --fontSize-label-2: 1.2rem;
     --fontSize-nav-1: 1rem;

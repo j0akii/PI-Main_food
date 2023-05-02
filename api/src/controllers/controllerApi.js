@@ -10,10 +10,10 @@ const getApi = () => {
       const allRecipes = data.map((recipe) => {
         return {
           id: recipe.id,
-          name: recipe.title,
-          image: recipe.image,
+          name: recipe.name,
+          image: recipe.image,  
           healthScore: recipe.healthScore,
-          price: recipe.pricePerServing,
+          price: recipe.price,
           diets: recipe.diets?.map((diet) => diet),
           summary: recipe.summary,
           stepByStep: recipe.stepByStep

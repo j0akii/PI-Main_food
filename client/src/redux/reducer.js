@@ -1,9 +1,11 @@
-import { ADD_FAV, REMOVE_FAV, FILTER_DIETS, FILTER_TYPE, ORDERING, RESET, GET_ALL_DIETS, GET_ALL_RECIPES } from "./actions";
+import { ADD_FAV, REMOVE_FAV, GET_ID_RECIPES, GET_NAME_RECIPES, GET_ALL_DIETS, GET_ALL_RECIPES } from "./actions";
 
 
 const initialState = {
     favRecipes: [],
     allRecipes: [],
+    idRecipes: [],
+    nameRecipes: [],
     allDiets: [],
 }
 
@@ -11,6 +13,18 @@ const initialState = {
 const rootReducer = (state = initialState, actions) => {
     switch (actions.type) {
       case GET_ALL_RECIPES:
+        return {
+          ...state,
+          allRecipes: actions.payload,
+        };
+
+      case GET_ID_RECIPES:
+        return {
+          ...state,
+          idRecipes: actions.payload,
+        };
+
+      case GET_NAME_RECIPES:
         return {
           ...state,
           allRecipes: actions.payload,
@@ -33,37 +47,6 @@ const rootReducer = (state = initialState, actions) => {
         return {
           ...state,
           favRecipes: actions.payload,
-        };
-
-      case FILTER_DIETS:
-        return {
-          ...state,
-          favRecipes: state.allRecipes.filter((recipe) =>
-            recipe.diet.map((diet) => diet == actions.payload)
-          ),
-        };
-
-      case FILTER_TYPE:
-        if (actions.payload == "API") {
-          return {
-            ...state,
-            favRecipes: state.favRecipes.filter(
-              (recipe) => isNaN(recipe.id) === false
-            ),
-          };
-        } else if (actions.payload == "DB") {
-          return {
-            ...state,
-            favRecipes: state.favRecipes.filter(
-              (recipe) => isNaN(recipe.id) === true
-            ),
-          };
-        }
-
-      case RESET:
-        return {
-          ...state,
-          favRecipes: state.favRecipes,
         };
 
       default:
