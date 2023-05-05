@@ -4,7 +4,7 @@ import { ADD_FAV, REMOVE_FAV, GET_ID_RECIPES, GET_NAME_RECIPES, GET_ALL_DIETS, G
 const initialState = {
     favRecipes: [],
     allRecipes: [],
-    idRecipes: [],
+    idRecipe: [],
     nameRecipes: [],
     allDiets: [],
 }
@@ -21,7 +21,7 @@ const rootReducer = (state = initialState, actions) => {
       case GET_ID_RECIPES:
         return {
           ...state,
-          idRecipes: actions.payload,
+          idRecipe: actions.payload,
         };
 
       case GET_NAME_RECIPES:

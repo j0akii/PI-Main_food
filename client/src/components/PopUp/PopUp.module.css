@@ -1,0 +1,39 @@
+.container {
+    position: fixed;
+    top: 25%;
+    left: 25%;
+    background: var(--color-golden);
+    width: 50%;
+    height: 50%;
+    border: 3px solid var(--color-black);
+    outline: 3px solid var(--color-golden);
+    z-index: 999;
+}
+
+.h1 {
+    padding: 1rem;
+    font-size: var(--fontSize-title-3);
+    font-family: var(--fontFamily-forum);
+}
+
+.image {
+    width: 12rem;
+    margin-bottom: .3rem;
+}
+
+.btn {
+    cursor: pointer;
+    padding: .5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    color: var(--color-black);
+    background: transparent;
+    outline: 3px solid var(--color-black);
+    transition: .5s ease;
+}
+
+.btn:hover {
+    color: var(--color-white);
+    background: var(--color-black);
+    box-shadow: 0 0 .2rem .2rem var(--color-black);
+}

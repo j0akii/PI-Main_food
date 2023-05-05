@@ -140,16 +140,17 @@
 .containerFilters {
     max-height: 0;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    background: var(--color-dark);
+    box-shadow: inset 0 0 1rem .3rem black;
+    transition: max-height .5s ease;
 }
 
 .containerFiltersShow {
     max-height: 20rem;
-    margin-bottom: 1rem;
-    display: flex;
-    justify-content: center;
-    background: var(--color-dark);
-    box-shadow: inset 0 0 1rem .3rem black;
-    transition: max-height 0.5s ease;
+    transition: max-height .5s ease;
 }
 
 .dietsFilter {

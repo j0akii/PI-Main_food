@@ -1,7 +1,6 @@
 .container {
     position: relative;
     overflow: hidden;
-    cursor: pointer;
     width: 20rem;
     height: 25rem;
     margin: 1rem;
@@ -84,6 +83,7 @@
 
 .fav {
     position: absolute;
+    cursor: pointer;
     top: 0;
     right: 0;
     font-size: 1rem;
@@ -106,6 +106,7 @@
     padding: .6rem;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+    cursor: pointer;
     border: 2px solid var(--color-golden);
     color: var(--color-golden);
     background: transparent;

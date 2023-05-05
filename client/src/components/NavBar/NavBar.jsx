@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import style from './NavBar.module.css';
-import imgIcon from '../../images/icon.png'
-import Variables from '../Variables/Variables.module.css'
 import { NavLink } from 'react-router-dom';
 
 export default function NavBar() {
@@ -11,7 +9,7 @@ export default function NavBar() {
     const [currentPath, setCurrentPath] = useState(location.pathname);
     const nav = useNavigate();
     const navigation = () => {
-        nav('/Form')
+        nav('/Recipes/Form')
     }
 
     const [menuOpen, setMenuOpen] = useState(false);
@@ -46,7 +44,7 @@ export default function NavBar() {
                 <div className={style.separator}></div>
             </NavLink>
             <NavLink to={'/Recipes'} className={style.link}>
-                <a className={currentPath === '/Recipes' ? style.act : style.a}>Recipes</a>
+                <a className={currentPath.includes('/Recipes') ? style.act : style.a}>Recipes</a>
                 <div className={style.separator}></div>
             </NavLink>
             <NavLink to={'/Diets'} className={style.link}>

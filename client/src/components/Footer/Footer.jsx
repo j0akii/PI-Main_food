@@ -1,11 +1,11 @@
 import style from './Footer.module.css'
 
 
-export default function Footer () {
+export default function Footer (props) {
 
 
     return (
-        <div className={style.container}>
+        <div className={props.isCreated === true ? style.hide : style.container}>
             <div className={style.contact}>
                 <h1 className={`${style.h1} ${style.contactUs}`}>Contact <span className={style.span}>Us:</span></h1>
                 <h3 className={style.h3}>examplemail@gmail.com</h3>

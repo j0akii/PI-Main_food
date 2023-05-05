@@ -13,12 +13,12 @@ export default function SearchBar () {
         setName(event.target.value);
     }
 
-const onSearch = (name) => {
-    dispatch(getAllRecipes(name))
-        .catch(() => {
-        setIsError(!isError);
-        });
-};
+    const onSearch = (name) => {
+        dispatch(getAllRecipes(name))
+            .catch(() => {
+                setIsError(!isError);
+            });
+    };
 
     return (
         <div className={style.container}>

@@ -16,55 +16,77 @@ export default function Recipes () {
 
 
     const handleOrder = (e) => {
-        if (e.target.value == "A") {
+        if (e.target.value === "A") {
             setSelectedDiets({ A: !selectedDiets.A })
             setFiltredRecipes({
                 ...filtredRecipes,
-                filtredRecipes: recipes.sort((a, b) => {
-                        if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
-                        if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
-                        return 0;
-                    })
-            });
-        } 
-        else if (e.target.value == "D") {
-            setSelectedDiets({ D: !selectedDiets.D })
-            setFiltredRecipes({
-                ...filtredRecipes,
                 filtredRecipes: filtredRecipes + recipes.sort((a, b) => {
-                    if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
-                    if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
+                    if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+                    if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
                     return 0;
                 })
             });
-        }
-        else if (e.target.value == "healthScore+") {
-            setSelectedDiets({ hplus: !selectedDiets.hplus })
-            setFiltredRecipes({
-                ...filtredRecipes,
-                filtredRecipes: filtredRecipes + recipes.sort((a, b) => b.healthScore - a.healthScore)
-            });
         } 
-        else if (e.target.value == "healthScore-") {
+        else if (e.target.value === "D") {
+            if (filtredRecipes.length >= 1) {
+                const filtered = filtredRecipes.sort((a, b) => {
+                    if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
+                    if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
+                    return 0;
+                });
+                setSelectedDiets({ D: !selectedDiets.D })
+                setFiltredRecipes([...filtered]);
+            }
+            else {
+                const filtered = recipes.sort((a, b) => {
+                    if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
+                    if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
+                    return 0;
+                });
+                setSelectedDiets({ D: !selectedDiets.D })
+                setFiltredRecipes([...filtered]);
+            }
+
+        }
+        else if (e.target.value === "healthScore+") {
+            setSelectedDiets({ hplus: !selectedDiets.hplus })
+            setFiltredRecipes([
+                ...filtredRecipes + recipes.sort((a, b) => b.healthScore - a.healthScore)
+            ]);
+        } 
+        else if (e.target.value === "healthScore-") {
             setSelectedDiets({ hless: !selectedDiets.hless })
-            setFiltredRecipes({
-                ...filtredRecipes,
-                filtredRecipes: filtredRecipes + recipes.sort((a, b) => a.healthScore - b.healthScore)
-            });
+            setFiltredRecipes([
+                ...filtredRecipes + recipes.sort((a, b) => a.healthScore - b.healthScore)
+            ]);
         }
         else if (e.target.value == "Price+") {
             setSelectedDiets({ pplus: !selectedDiets.pplus })
-            setFiltredRecipes({
-                ...filtredRecipes,
-                filtredRecipes: filtredRecipes + recipes.sort((a, b) => b.price - a.price)
-            });
+            setFiltredRecipes([
+                ...filtredRecipes + recipes.sort((a, b) => b.price - a.price)
+            ]);
         } 
         else if (e.target.value == "Price-") {
             setSelectedDiets({ pless: !selectedDiets.pless })
-            setFiltredRecipes({
-                ...filtredRecipes,
-                filtredRecipes: filtredRecipes + recipes.sort((a, b) => a.price - b.price)
-            });
+            setFiltredRecipes([
+                ...filtredRecipes + recipes.sort((a, b) => a.price - b.price)
+            ]);
+        }
+    }
+
+    const handleType = (e) => {
+        switch (e.target.value) {
+            case 'DB':
+                setSelectedDiets({ DB: !selectedDiets.DB })
+                return setFiltredRecipes(recipes.filter((recipe) => typeof recipe.id !== 'number'))
+
+            case 'API':
+                setSelectedDiets({ API: !selectedDiets.API })
+                return setFiltredRecipes(recipes.filter((recipe) => typeof recipe.id === 'number'))
+
+            default:
+                setSelectedDiets({ ALL: !selectedDiets.ALL })
+                return setFiltredRecipes(recipes);
         }
     }
 
@@ -140,39 +162,41 @@ export default function Recipes () {
     const [selectedDiets, setSelectedDiets] = useState({});
 
     const handleDietsFilter = (event) => {
-    const diet = event.target.value;
-    const isChecked = event.target.checked;
+        const diet = event.target.value;
+        const isChecked = event.target.checked;
 
-    setSelectedDiets((prevSelectedDiets) => ({
-        ...prevSelectedDiets,
-        [diet]: isChecked,
-    }));
+        setSelectedDiets((prevSelectedDiets) => ({
+            ...prevSelectedDiets,
+            [diet]: isChecked,
+        }));
     };
 
     const setDietsFilter = () => {
-    const selectedDietKeys = Object.keys(selectedDiets).filter((key) => selectedDiets[key]);
+        const selectedDietKeys = Object.keys(selectedDiets).filter((key) => selectedDiets[key]);
 
-    if (selectedDietKeys.length === 0) {
-        setFiltredRecipes(recipes);
-        return;
-    }
+        if (selectedDietKeys.length === 0) {
+            setFiltredRecipes(recipes);
+            return;
+        }
 
-    const filtered = recipes.filter((recipe) => {
-        return selectedDietKeys.every((diet) => {
-        return recipe.diets.includes(diet.toLowerCase());
+        const filtered = recipes.filter((recipe) => {
+            return selectedDietKeys.every((diet) => {
+            return recipe.diets.includes(diet.toLowerCase());
+            });
         });
-    });
 
-    setFiltredRecipes(filtered);
+        setFiltredRecipes([...filtered]);
     };
 
     useEffect(() => {
         setDietsFilter();
-    }, [selectedDiets])    
+        console.log(recipes)
+        console.log(filtredRecipes)
+    }, [selectedDiets])
 
     useEffect(() => {
         dispatch(getAllRecipes());
-        }, [dispatch]);
+    }, [dispatch]);
 
     const spacedWords = { Vegetarian: 'Lacto Ovo Vegetarian', Fodmap: 'Fodmap Friendly', Gluten: 'Gluten Free', Dairy: 'Dairy Free', Whole30: 'Whole 30' }
 
@@ -184,10 +208,10 @@ export default function Recipes () {
                     <div className={style.separatorBar}></div>
                     <button className={style.btnFilter} onClick={showMore}>
                         <span className={`${style.text} ${style.text_1}`}><i class='bx bx-filter-alt'></i></span>
-                        <span className={`${style.text} ${style.text_2} `} aria-hidden="true"><i class='bx bx-filter-alt'></i></span>
+                        <span className={`${style.text} ${style.text_2}`} aria-hidden="true"><i class='bx bx-filter-alt'></i></span>
                     </button>
                 </div>
-                <div className={ showMoreState ? style.containerFilters : style.containerFiltersShow}>
+                <div className={ showMoreState ? style.containerFilters : `${style.containerFilters} ${style.containerFiltersShow}`}>
                         <div className={style.dietsFilter}>
                             <h1 className={style.dietsTitle}>Select Order:</h1>
                             <div className={style.dietsFilterCont}>
@@ -248,14 +272,14 @@ export default function Recipes () {
                         <div className={style.dietsFilter}>
                             <h1 className={style.dietsTitle}>Select Type:</h1>
                             <div className={style.dietsFilterCont}>
-                                <label className={selectedDiets.API ? `${style.checkLabel} ${style.checkedLabel}` : style.checkLabel}>All Recipes
-                                    <input className={style.option} type='checkbox' value="ALL" />
+                                <label className={selectedDiets.ALL ? `${style.checkLabel} ${style.checkedLabel}` : style.checkLabel}>All Recipes
+                                    <input className={style.option} onChange={handleType} type='checkbox' value="" />
                                 </label>
                                 <label className={selectedDiets.DB ? `${style.checkLabel} ${style.checkedLabel}` : style.checkLabel}>Your Recipes
-                                    <input className={style.option} type='checkbox' value="DB" />
+                                    <input className={style.option} onChange={handleType} type='checkbox' value="DB" />
                                 </label>
                                 <label className={selectedDiets.API ? `${style.checkLabel} ${style.checkedLabel}` : style.checkLabel}>Api Recipes
-                                    <input className={style.option} type='checkbox' value="API" />
+                                    <input className={style.option} onChange={handleType} type='checkbox' value="API" />
                                 </label>
                             </div>
                         </div>

@@ -1,7 +1,7 @@
 const axios = require('axios');
 const { API_KEY } = process.env;
 const { Recipe, Diet } = require('../db');
-const { data } = require('./data')
+const { data } = require('./data');
 const URL_API = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=100&addRecipeInformation=true`;
 
 // Obtengo los datos de la API:
@@ -16,7 +16,7 @@ const getApi = () => {
           price: recipe.price,
           diets: recipe.diets?.map((diet) => diet),
           summary: recipe.summary,
-          stepByStep: recipe.stepByStep
+          stepByStep: recipe.stepByStep 
         };
       });
 
@@ -80,6 +80,7 @@ const getData = async () => {
         healthScore: recipe.healthScore,
         image: recipe.image,
         stepByStep: recipe.stepByStep,
+        price: recipe.price,
         diets: recipe.diets?.map((diet) => diet.name),
       };
     });

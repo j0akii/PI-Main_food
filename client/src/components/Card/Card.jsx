@@ -21,10 +21,6 @@ export default function Card({
 
    const { favRecipes } = useSelector((state) => state)
 
-   const seeDetail = () => {
-      dispatch(getIdRecipes(id))
-   }
-
    const handleFavorite = () => {
       if(isFav) {
          setIsFav(false);
@@ -63,8 +59,8 @@ export default function Card({
             <h1 className={style.h1}>{name}</h1>
             <h2 className={style.h2}>Health Score: {healthScore}</h2>
             <p className={style.h2}>{diets.map((diet) => '#' + diet + ', ')}</p>
-            <NavLink className={style.navStyle} to={`./detail/${id}`}>
-               <button className={style.btn} onClick={seeDetail}>See Detail</button>
+            <NavLink className={style.navStyle} to={`./Detail/${id}`}>
+               <button className={style.btn}>See Detail</button>
             </NavLink>
          </div>
          <label className={style.label}>{price + '$'}</label>

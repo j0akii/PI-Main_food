@@ -4,6 +4,7 @@ export const GET_ALL_RECIPES = 'GET_ALL_RECIPES';
 export const GET_ID_RECIPES = "GET_ID_RECIPES";
 export const GET_NAME_RECIPES = "GET_NAME_RECIPES";
 export const GET_ALL_DIETS = "GET_ALL_DIETS";
+export const CREATE_RECIPE = "CREATE_RECIPE";
 export const ADD_FAV = 'ADD_FAV';
 export const REMOVE_FAV = 'REMOVE_FAV';
 export const FILTER_DIETS = 'FILTER_DIETS';
@@ -67,8 +68,24 @@ export const getAllDiets = () => {
        console.log(error.message);
      }
    };
+};
 
-}
+// Para crear una receta
+
+export const createRecipe = (obj) => {
+  return async (dispatch) => {
+    try {
+      const endPoint = `${URL_END}/diets/`;
+      const response = await axios.post(endPoint, obj);
+      return dispatch({
+        type: CREATE_RECIPE,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
 
 // Para agregar a recetas favoritas
 
@@ -77,7 +94,7 @@ export const addFav = (recipe) => {
       try {
          const endPoint = `${URL_END}/recipes/fav`;
          const response = await axios.post(endPoint, recipe);
-         return dispatch({ // No estoy seguro de que vaya un return
+         return dispatch({
             type: ADD_FAV,
             payload: response.data
          });

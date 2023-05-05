@@ -1,0 +1,196 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    background: url('../../images/Home-Head.jpg');
+    min-height: 100vh;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    color: var(--color-white);
+    background: linear-gradient(to bottom, var(--color-dark), transparent);
+}
+
+.infoContent {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    padding: .5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: 1rem;
+    margin-top: 5rem;
+    border: 3px solid var(--color-black);
+    outline: 3px solid var(--color-golden);
+    justify-content: space-around;
+    background: var(--color-golden);
+    color: var(--color-black);
+}
+
+.infoContent h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+}
+
+.infoContent h1 i {
+    margin-left: .3rem;
+    margin-right: .3rem;
+}
+
+.infoSeparator {
+    margin-left: 1rem;  
+    margin-right: 1rem;
+    width: .2rem;
+    height: 2rem;
+    background: var(--color-black);
+}
+
+.containerContent {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.img {
+    width: 25rem;
+    height: 25rem;
+    object-fit: cover;
+    border-radius: 50%;
+    border: .5rem solid transparent;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    outline: .5rem solid var(--color-golden);
+}
+
+.titleContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.titleContainer  .title {
+    margin: 1rem;
+    margin-bottom: .2rem;
+    font-size: var(--fontSize-headline-1);
+    font-family: var(--fontFamily-forum);
+}
+
+.separator1 {
+    width: 80%;
+    height: .5rem;
+    border-top: .2rem solid var(--color-golden);
+}
+
+.separator2 {
+    width: 75%;
+    height: .5rem;
+    border-top: .2rem solid var(--color-golden);
+}
+
+.separator3 {
+    width: 70%;
+    height: .5rem;
+    border-top: .2rem solid var(--color-golden);
+}
+
+.data {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.btn {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    color: var(--color-black);
+    font-size: var(--fontSize-body-2);
+    font-weight: var(--weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background: var(--color-golden);
+    border: 3px solid var(--color-golden);
+    margin-bottom: 2rem;
+    width: 100%;
+    height: 3rem;
+    z-index: 1;
+}
+
+.btn::before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200%;
+    height: 200%;
+    border-radius: 50%;
+    background: var(--color-black);
+    transition: .5s ease;
+    z-index: -1;
+}
+
+.btn .text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .250s ease;
+}
+
+.btn .text_1 {
+    position: absolute;
+    top: 10%;
+    left: 0;
+    right: 0;
+}
+
+.btn .text_2 {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: max-content;
+    color: var(--color-white);
+}
+
+.btn:is(:hover, :focus-visible)::before {
+    bottom: -50%;
+}
+
+.btn:is(:hover, :focus-visible) .text_1 {
+    transform: translateY(-40px);
+}
+
+.btn:is(:hover, :focus-visible) .text_2 {
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.btn i {
+    font-size: 1.9rem;
+    margin-left: .2rem;
+}
+
+.desactive {
+    max-height: 0;
+    overflow: hidden;
+    color: var(--color-white);
+    font-family: var(--fontFamily-forum);
+    background: var(--color-black);
+    transition: max-height .5s ease;
+}
+
+.active {
+    max-height: 20rem;
+    opacity: 1;
+    padding: 2rem;
+    transition: max-height .5s ease;
+}

@@ -40,9 +40,9 @@ describe('Recipe routes', () => {
 
       };
 
-      agent.post('/recipes').json(newRecipe).expect({ 
+      agent.post('/recipes').send(newRecipe).expect({ 
         message: 'The recipe was succesfully created', 
-        recipeCreated: newRecipe 
+        recipeCreated: newRecipe
 
       });
 
@@ -51,7 +51,7 @@ describe('Recipe routes', () => {
     it('should throw an error if Name or Summary are not sent', () => {
       const newRecipe = {};
 
-      agent.post('/recipes').json(newRecipe).expect(404);
+      agent.post('/recipes').send(newRecipe).expect(404);
 
     });
 

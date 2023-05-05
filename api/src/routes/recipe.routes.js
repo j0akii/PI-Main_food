@@ -60,6 +60,7 @@ router.post('/', async (req, res) => {
 
   }
 
+
   else {
 
     try {
@@ -79,13 +80,13 @@ router.post('/', async (req, res) => {
         },
       });
 
-      recipeCreated.addDiet(dietDB);
+      recipeCreated.addDiets(dietDB);
       res.json({ message: 'The recipe was succesfully created', recipeCreated: recipeCreated });
 
-    }
+    } 
 
     catch (error) {
-      res.status(404).send('There was an error with the creation of the recipe: ' + error.message);
+      res.status(404).send(error);
 
     }
 

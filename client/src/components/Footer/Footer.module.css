@@ -7,6 +7,18 @@
     background: url('../../images/Footer-Back.jpg');
 }
 
+.hide {
+    filter: blur(3px);
+    pointer-events: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem;
+    background: url('../../images/Footer-Back.jpg');
+    box-shadow: 0 0 1rem 1rem black;
+}
+
 .h1 {
     margin-top: 1rem;
     margin-bottom: 2rem;

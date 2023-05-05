@@ -1,0 +1,202 @@
+.container {
+    min-height: 100vh;
+    background: var(--color-black);
+    background: url('../../images/Recipes-Back.jpg');
+}
+
+.generalBack {
+    background: linear-gradient(to bottom, var(--color-dark), transparent);
+}
+
+.hide {
+    filter: blur(5px);
+    pointer-events: none;
+    min-height: 100vh;
+    background: var(--color-black);
+    background: url('../../images/Recipes-Back.jpg');
+    box-shadow: 0 0 1rem 1rem black;
+}
+
+.title {
+    padding-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.title .h1 {
+    margin: 1rem;
+    margin-bottom: .2rem;
+    font-size: var(--fontSize-headline-1);
+    font-family: var(--fontFamily-forum);
+    color: var(--color-white);
+}
+
+.separator {
+    width: 40%;
+    height: .8rem;
+    border-top: .2rem solid var(--color-golden);
+}
+
+.separator_style {
+    width: 35%;
+    border-top: .2rem solid var(--color-golden);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-white);
+    padding-bottom: 1rem;
+}
+
+.containerInput2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.input {
+    width: 17rem;
+}
+
+.input2 {
+    width: 35rem;
+}
+
+.textarea {
+    resize: none;
+    width: 35rem;
+}
+
+.inputGen {
+    background: var(--color-golden);
+    border: 3px solid var(--color-black);
+    outline: 3px solid var(--color-golden);
+    box-shadow: 0 0 .9rem .1rem var(--color-shadow-2);
+    padding: .5rem;
+    margin: .5rem;
+}
+
+.option {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+.dietsCont {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: start;
+    width: 33.6rem;
+    flex-wrap: wrap;
+    max-height: 0;
+    overflow: hidden;
+}
+
+.dietsCont.show {
+    max-height: 8.3rem;
+}
+
+.checkLabel {
+    cursor: pointer;
+    margin: .3rem;
+    padding: .3rem;
+    border: 2px solid var(--color-black);
+    outline: 2px solid var(--color-golden);
+    background-color: transparent;
+    transition: .5s ease-in-out;
+}
+
+.checkedLabel {
+    box-shadow: 0px 2px 8px 3px var(--color-golden);
+    color: var(--color-dark);
+    background: var(--color-golden);
+}
+
+.checkLabel:hover {
+    box-shadow: 0px 2px 8px 3px var(--color-golden);
+    color: var(--color-dark);
+    background: var(--color-golden);
+}
+
+.btn {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    color: var(--color-black);
+    font-size: var(--fontSize-body-2);
+    font-weight: var(--weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin: .5rem;
+    background: var(--color-golden);
+    border: 3px solid var(--color-black);
+    outline: 3px solid var(--color-golden);
+    width: 35rem;
+    height: 3rem;
+    z-index: 1;
+}
+
+.btn::before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200%;
+    height: 200%;
+    border-radius: 50%;
+    background: var(--color-black);
+    transition: .5s ease;
+    z-index: -1;
+}
+
+.btn .text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .250s ease;
+}
+
+.btn .text_1 {
+    position: absolute;
+    top: 10%;
+    left: 0;
+    right: 0;
+}
+
+.btn .text_2 {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: max-content;
+    color: var(--color-white);
+}
+
+.btn:is(:hover, :focus-visible)::before {
+    bottom: -50%;
+}
+
+.btn:is(:hover, :focus-visible) .text_1 {
+    transform: translateY(-40px);
+}
+
+.btn:is(:hover, :focus-visible) .text_2 {
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.btn i {
+    font-size: 1.9rem;
+    margin-left: .2rem;
+}
