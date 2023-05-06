@@ -37,7 +37,7 @@ export default function Form (props) {
         props.setIsCreated(true);
     }
 
-    const spacedWords = { Vegetarian: 'Lacto Ovo Vegetarian', Fodmap: 'Fodmap Friendly', Gluten: 'Gluten Free', Dairy: 'Dairy Free', Whole30: 'Whole 30' }
+    const spacedWords = { Vegetarian: 'lacto ovo vegetarian', Fodmap: 'fodmap friendly', Gluten: 'gluten free', Dairy: 'dairy free', Whole30: 'whole 30' }
 
     const [selectedDiets, setSelectedDiets] = useState({});
 
@@ -91,32 +91,32 @@ export default function Form (props) {
                         <span className={`${style.text} ${style.text_2}`}>Select Diets<i class='bx bxs-down-arrow-square'></i></span>
                     </button>
                     <div className={ showMoreState ? style.dietsCont :  `${style.dietsCont} ${style.show}`}>
-                        <label className={selectedDiets.Vegan ? `${style.checkLabel} ${style.checkedLabel}` : style.checkLabel}>Vegan
-                            <input className={style.option} type='checkbox' value="Vegan" onChange={handleDietsFilter}/>
+                        <label className={selectedDiets.vegan ? `${style.checkLabel} ${style.checkedLabel}` : style.checkLabel}>Vegan
+                            <input className={style.option} type='checkbox' value="vegan" onChange={handleDietsFilter}/>
                         </label>
                         <label className={selectedDiets[spacedWords.Vegetarian] ? `${style.checkLabel} ${style.checkedLabel}` : style.checkLabel}>Vegetarian
-                            <input className={style.option} type='checkbox' value="Lacto Ovo Vegetarian" onChange={handleDietsFilter}/>
+                            <input className={style.option} type='checkbox' value="lacto ovo vegetarian" onChange={handleDietsFilter}/>
                         </label>
                         <label className={selectedDiets[spacedWords.Fodmap] ? `${style.checkLabel} ${style.checkedLabel}` : style.checkLabel}>Fodmap F.
-                            <input className={style.option} type='checkbox' value="Fodmap Friendly" onChange={handleDietsFilter}/>
+                            <input className={style.option} type='checkbox' value="fodmap friendly" onChange={handleDietsFilter}/>
                         </label>
-                        <label className={selectedDiets.Ketogenic ? `${style.checkLabel} ${style.checkedLabel}` : style.checkLabel}>Ketogenic
-                            <input className={style.option} type='checkbox' value="Ketogenic" onChange={handleDietsFilter}/>
+                        <label className={selectedDiets.ketogenic ? `${style.checkLabel} ${style.checkedLabel}` : style.checkLabel}>Ketogenic
+                            <input className={style.option} type='checkbox' value="ketogenic" onChange={handleDietsFilter}/>
                         </label>
                         <label className={selectedDiets[spacedWords.Gluten] ? `${style.checkLabel} ${style.checkedLabel}` : style.checkLabel}>Gluten Free
-                            <input className={style.option} type='checkbox' value="Gluten Free" onChange={handleDietsFilter}/>
+                            <input className={style.option} type='checkbox' value="gluten free" onChange={handleDietsFilter}/>
                         </label>
                         <label className={selectedDiets[spacedWords.Dairy] ? `${style.checkLabel} ${style.checkedLabel}` : style.checkLabel}>Dairy Free
-                            <input className={style.option} type='checkbox' value="Dairy Free" onChange={handleDietsFilter}/>
+                            <input className={style.option} type='checkbox' value="dairy free" onChange={handleDietsFilter}/>
                         </label>
-                        <label className={selectedDiets.Paleolithic ? `${style.checkLabel} ${style.checkedLabel}` : style.checkLabel}>Paleolithic
-                            <input className={style.option} type='checkbox' value="Paleolithic" onChange={handleDietsFilter}/>
+                        <label className={selectedDiets.paleolithic ? `${style.checkLabel} ${style.checkedLabel}` : style.checkLabel}>Paleolithic
+                            <input className={style.option} type='checkbox' value="paleolithic" onChange={handleDietsFilter}/>
                         </label>
-                        <label className={selectedDiets.Primal ? `${style.checkLabel} ${style.checkedLabel}` : style.checkLabel}>Primal
-                            <input className={style.option} type='checkbox' value="Primal" onChange={handleDietsFilter}/>
+                        <label className={selectedDiets.primal ? `${style.checkLabel} ${style.checkedLabel}` : style.checkLabel}>Primal
+                            <input className={style.option} type='checkbox' value="primal" onChange={handleDietsFilter}/>
                         </label>
                         <label className={selectedDiets[spacedWords.Whole30] ? `${style.checkLabel} ${style.checkedLabel}` : style.checkLabel}>Whole30
-                            <input className={style.option} type='checkbox' value="Whole 30" onChange={handleDietsFilter}/>
+                            <input className={style.option} type='checkbox' value="whole 30" onChange={handleDietsFilter}/>
                         </label>
                     </div>
                     <textarea className={`${style.textarea} ${style.inputGen}`} name="stepByStep" cols="30" rows="10" onChange={handleInputChange} placeholder='Step By Step'></textarea>

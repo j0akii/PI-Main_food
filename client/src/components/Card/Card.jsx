@@ -16,45 +16,8 @@ export default function Card({
         diets,
     }) {
 
-   const dispatch = useDispatch();
-   const [isFav, setIsFav] = useState(false);
-
-   const { favRecipes } = useSelector((state) => state)
-
-   const handleFavorite = () => {
-      if(isFav) {
-         setIsFav(false);
-         dispatch(removeFav(id));
-      }
-      else {
-         setIsFav(true);
-         dispatch(addFav({
-            id, 
-            name, 
-            summary, 
-            healthScore, 
-            stepByStep,
-            image,
-            price
-         }));
-      }
-   }
-
-   useEffect(() => {
-      favRecipes.forEach((fav) => {
-         if (fav.id == id) {
-            setIsFav(true);
-         }
-      });
-   }, [favRecipes])
-   
    return (
       <div className={`${style.container} ${style.mobile_hover}`} style={{ backgroundImage: `url(${image})` }}>
-         {isFav ? (
-               <button className={style.fav} onClick={handleFavorite}><i class='bx bxs-star'></i></button>
-         ) : (
-               <button className={style.fav} onClick={handleFavorite}><i class='bx bx-star' ></i></button>
-         )}
          <div className={`${style.text} ${style.text_2}`}>
             <h1 className={style.h1}>{name}</h1>
             <h2 className={style.h2}>Health Score: {healthScore}</h2>

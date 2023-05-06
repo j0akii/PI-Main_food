@@ -51,10 +51,6 @@ export default function NavBar() {
                 <a className={currentPath === '/Diets' ? style.act : style.a}>Diets</a>
                 <div className={style.separator}></div>
             </NavLink>
-            <NavLink to={'/Favorites'} className={style.link}>
-                <a className={currentPath === '/Favorites' ? style.act : style.a}>Favorites</a>
-                <div className={style.separator}></div>
-            </NavLink>
             <NavLink to={'/About'} className={style.link}>
                 <a className={currentPath === '/About' ? style.act : style.a}>About</a>
             </NavLink>

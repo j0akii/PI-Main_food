@@ -31,16 +31,16 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { Recipe, Diet } = sequelize.models;
 
 const initialDiets = [
-  { name: 'Gluten Free' },
-  { name: 'Ketogenic' },
-  { name: 'Vegetarian' },
-  { name: 'Lacto-Vegetarian' },
-  { name: 'Ovo-Vegetarian' },
-  { name: 'Vegan' },
-  { name: 'Pescetarian' },
-  { name: 'Paleolithic' },
-  { name: 'Primal' },
-  { name: 'Whole30' },
+  { name: "gluten free" },
+  { name: "ketogenic" },
+  { name: "lacto ovo vegetarian" },
+  { name: "vegan" },
+  { name: "pescetarian" },
+  { name: "paleolithic" },
+  { name: "fodmap friendly" },
+  { name: "dairy free" },
+  { name: "primal" },
+  { name: "whole 30" },
 ];
 
 const add = () => {

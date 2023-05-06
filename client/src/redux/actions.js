@@ -5,12 +5,10 @@ export const GET_ID_RECIPES = "GET_ID_RECIPES";
 export const GET_NAME_RECIPES = "GET_NAME_RECIPES";
 export const GET_ALL_DIETS = "GET_ALL_DIETS";
 export const CREATE_RECIPE = "CREATE_RECIPE";
-export const ADD_FAV = 'ADD_FAV';
-export const REMOVE_FAV = 'REMOVE_FAV';
 export const FILTER_DIETS = 'FILTER_DIETS';
+export const UPDATE_SELECTED_DIETS = 'UPDATE_SELECTED_DIETS';
 export const FILTER_TYPE = 'FILTER_TYPE';
 export const ORDERING = 'ORDERING';
-export const RESET = 'RESET';
 
 const URL_END = 'http://localhost:3001';
 
@@ -87,45 +85,37 @@ export const createRecipe = (obj) => {
   };
 };
 
-// Para agregar a recetas favoritas
+// Para ordenar las recetas
 
-export const addFav = (recipe) => {
-   return async (dispatch) => {
-      try {
-         const endPoint = `${URL_END}/recipes/fav`;
-         const response = await axios.post(endPoint, recipe);
-         return dispatch({
-            type: ADD_FAV,
-            payload: response.data
-         });
-      } catch (error) {
-         console.log(error.message);
-      };
-   };
-};
+export const orderRecipes = (value) => {
+  return {
+    type: ORDERING,
+    payload: value,
+  }
+}
 
-// Para eliminar de recetas favoritas
+// Para saber cuales son las dietas seleccionadas para el filtro
 
-export const removeFav = (id) => {
-   return async (dispatch) => {
-      try {
-         const endPoint = `${URL_END}/recipes/fav/${id}`;
-         const response = await axios.delete(endPoint);
-         return dispatch({
-            type: REMOVE_FAV,
-            payload: response.data,
-         })
-      }
-      catch (error) {
-         console.log(error.message);
-      };
-   };
-};
+export const updateSelectedDiets = (selectedDiets) => {
+  return {
+    type: UPDATE_SELECTED_DIETS,
+    payload: { selectedDiets },
+  }
+}
 
-// Boton para resetear todos los filtro:
+// Para filtrar por dietas
 
-export const reset = () => {
-    return {
-        type: RESET,
-    };
-};
+export const filterDietsRecipes = () => {
+  return {
+    type: FILTER_DIETS,
+  }
+}
+
+// Para filtrar por tipo
+
+export const filterTypeRecipes = (value) => {
+  return {
+    type: FILTER_TYPE,
+    payload: value,
+  }
+}

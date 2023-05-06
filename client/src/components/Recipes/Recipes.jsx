@@ -1,93 +1,34 @@
-import React from 'react';
-import style from './Recipes.module.css';
-import Card from '../Card/Card';
-import SearchBar from '../SearchBar/SearchBar';
-import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getAllRecipes } from '../../redux/actions';
+import React from 'react'
+import style from './Recipes.module.css'
+import Card from '../Card/Card'
+import SearchBar from '../SearchBar/SearchBar'
+import { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { getAllRecipes, orderRecipes, updateSelectedDiets, filterDietsRecipes, filterTypeRecipes } from '../../redux/actions'
 import separator from '../../images/Separator-Back.svg'
 
 
 export default function Recipes () {
     const dispatch = useDispatch();
     const recipes = useSelector(state => state.allRecipes);
-    const [filtredRecipes, setFiltredRecipes] = useState([]);
+    const { filtredRecipes } = useSelector(state => state);
+    const { selectedDiets } = useSelector(state => state);
+    const [selectedFilter, setSelectedFilter] = useState({});
     
 
 
     const handleOrder = (e) => {
-        if (e.target.value === "A") {
-            setSelectedDiets({ A: !selectedDiets.A })
-            setFiltredRecipes({
-                ...filtredRecipes,
-                filtredRecipes: filtredRecipes + recipes.sort((a, b) => {
-                    if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
-                    if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
-                    return 0;
-                })
-            });
-        } 
-        else if (e.target.value === "D") {
-            if (filtredRecipes.length >= 1) {
-                const filtered = filtredRecipes.sort((a, b) => {
-                    if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
-                    if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
-                    return 0;
-                });
-                setSelectedDiets({ D: !selectedDiets.D })
-                setFiltredRecipes([...filtered]);
-            }
-            else {
-                const filtered = recipes.sort((a, b) => {
-                    if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
-                    if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
-                    return 0;
-                });
-                setSelectedDiets({ D: !selectedDiets.D })
-                setFiltredRecipes([...filtered]);
-            }
-
-        }
-        else if (e.target.value === "healthScore+") {
-            setSelectedDiets({ hplus: !selectedDiets.hplus })
-            setFiltredRecipes([
-                ...filtredRecipes + recipes.sort((a, b) => b.healthScore - a.healthScore)
-            ]);
-        } 
-        else if (e.target.value === "healthScore-") {
-            setSelectedDiets({ hless: !selectedDiets.hless })
-            setFiltredRecipes([
-                ...filtredRecipes + recipes.sort((a, b) => a.healthScore - b.healthScore)
-            ]);
-        }
-        else if (e.target.value == "Price+") {
-            setSelectedDiets({ pplus: !selectedDiets.pplus })
-            setFiltredRecipes([
-                ...filtredRecipes + recipes.sort((a, b) => b.price - a.price)
-            ]);
-        } 
-        else if (e.target.value == "Price-") {
-            setSelectedDiets({ pless: !selectedDiets.pless })
-            setFiltredRecipes([
-                ...filtredRecipes + recipes.sort((a, b) => a.price - b.price)
-            ]);
-        }
+        const { value } = e.target;
+        setSelectedFilter({ [value]: !selectedFilter[value] });
+        dispatch(orderRecipes(value));
     }
 
     const handleType = (e) => {
-        switch (e.target.value) {
-            case 'DB':
-                setSelectedDiets({ DB: !selectedDiets.DB })
-                return setFiltredRecipes(recipes.filter((recipe) => typeof recipe.id !== 'number'))
+        const { value } = e.target;
+        const isChecked = e.target.checked;
 
-            case 'API':
-                setSelectedDiets({ API: !selectedDiets.API })
-                return setFiltredRecipes(recipes.filter((recipe) => typeof recipe.id === 'number'))
-
-            default:
-                setSelectedDiets({ ALL: !selectedDiets.ALL })
-                return setFiltredRecipes(recipes);
-        }
+        setSelectedFilter({ [value]: !selectedFilter[value] });
+        isChecked && dispatch(filterTypeRecipes(value));
     }
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -159,39 +100,21 @@ export default function Recipes () {
         setShowMoreState(!showMoreState)
     }
 
-    const [selectedDiets, setSelectedDiets] = useState({});
 
-    const handleDietsFilter = (event) => {
-        const diet = event.target.value;
-        const isChecked = event.target.checked;
+    const handleDietsFilter = (e) => {
+        const { value } = e.target;
+        const isChecked = e.target.checked;
 
-        setSelectedDiets((prevSelectedDiets) => ({
-            ...prevSelectedDiets,
-            [diet]: isChecked,
-        }));
+        dispatch(updateSelectedDiets({[value]: isChecked}))
     };
 
     const setDietsFilter = () => {
-        const selectedDietKeys = Object.keys(selectedDiets).filter((key) => selectedDiets[key]);
-
-        if (selectedDietKeys.length === 0) {
-            setFiltredRecipes(recipes);
-            return;
-        }
-
-        const filtered = recipes.filter((recipe) => {
-            return selectedDietKeys.every((diet) => {
-            return recipe.diets.includes(diet.toLowerCase());
-            });
-        });
-
-        setFiltredRecipes([...filtered]);
+        dispatch(filterDietsRecipes());
     };
 
     useEffect(() => {
         setDietsFilter();
-        console.log(recipes)
-        console.log(filtredRecipes)
+        console.log(selectedFilter)
     }, [selectedDiets])
 
     useEffect(() => {
@@ -215,23 +138,23 @@ export default function Recipes () {
                         <div className={style.dietsFilter}>
                             <h1 className={style.dietsTitle}>Select Order:</h1>
                             <div className={style.dietsFilterCont}>
-                                <label className={selectedDiets.A ? `${style.checkLabel} ${style.checkedLabel}` : style.checkLabel}>Ascendent
+                                <label className={selectedFilter.A ? `${style.checkLabel} ${style.checkedLabel}` : style.checkLabel}>Ascendent
                                     <input className={style.option} onChange={handleOrder} type='checkbox' value="A" />
                                 </label>
-                                <label className={selectedDiets.hplus ? `${style.checkLabel} ${style.checkedLabel}` : style.checkLabel}>Healthier
-                                    <input className={style.option} onChange={handleOrder} type='checkbox' value="healthScore+" />
+                                <label className={selectedFilter.hplus ? `${style.checkLabel} ${style.checkedLabel}` : style.checkLabel}>Healthier
+                                    <input className={style.option} onChange={handleOrder} type='checkbox' value="hplus" />
                                 </label> 
-                                <label className={selectedDiets.pplus ? `${style.checkLabel} ${style.checkedLabel}` : style.checkLabel}>Expensive
-                                    <input className={style.option} onChange={handleOrder} type='checkbox' value="Price+" />
+                                <label className={selectedFilter.pplus ? `${style.checkLabel} ${style.checkedLabel}` : style.checkLabel}>Expensive
+                                    <input className={style.option} onChange={handleOrder} type='checkbox' value="pplus" />
                                 </label>    
-                                <label className={selectedDiets.D ? `${style.checkLabel} ${style.checkedLabel}` : style.checkLabel}>Descending
+                                <label className={selectedFilter.D ? `${style.checkLabel} ${style.checkedLabel}` : style.checkLabel}>Descending
                                     <input className={style.option} onChange={handleOrder} type='checkbox' value="D" />
                                 </label>
-                                <label className={selectedDiets.hless ? `${style.checkLabel} ${style.checkedLabel}` : style.checkLabel}>Less Healthy
-                                    <input className={style.option} onChange={handleOrder} type='checkbox' value="healthScore-" />
+                                <label className={selectedFilter.hless ? `${style.checkLabel} ${style.checkedLabel}` : style.checkLabel}>Less Healthy
+                                    <input className={style.option} onChange={handleOrder} type='checkbox' value="hless" />
                                 </label>
-                                <label className={selectedDiets.pless ? `${style.checkLabel} ${style.checkedLabel}` : style.checkLabel}>Economic
-                                    <input className={style.option} onChange={handleOrder} type='checkbox' value="Price-" />
+                                <label className={selectedFilter.pless ? `${style.checkLabel} ${style.checkedLabel}` : style.checkLabel}>Economic
+                                    <input className={style.option} onChange={handleOrder} type='checkbox' value="pless" />
                                 </label>
                             </div>
                         </div>
@@ -272,13 +195,13 @@ export default function Recipes () {
                         <div className={style.dietsFilter}>
                             <h1 className={style.dietsTitle}>Select Type:</h1>
                             <div className={style.dietsFilterCont}>
-                                <label className={selectedDiets.ALL ? `${style.checkLabel} ${style.checkedLabel}` : style.checkLabel}>All Recipes
-                                    <input className={style.option} onChange={handleType} type='checkbox' value="" />
+                                <label className={selectedFilter.ALL ? `${style.checkLabel} ${style.checkedLabel}` : style.checkLabel}>All Recipes
+                                    <input className={style.option} onChange={handleType} type='checkbox' value="ALL" />
                                 </label>
-                                <label className={selectedDiets.DB ? `${style.checkLabel} ${style.checkedLabel}` : style.checkLabel}>Your Recipes
+                                <label className={selectedFilter.DB ? `${style.checkLabel} ${style.checkedLabel}` : style.checkLabel}>Your Recipes
                                     <input className={style.option} onChange={handleType} type='checkbox' value="DB" />
                                 </label>
-                                <label className={selectedDiets.API ? `${style.checkLabel} ${style.checkedLabel}` : style.checkLabel}>Api Recipes
+                                <label className={selectedFilter.API ? `${style.checkLabel} ${style.checkedLabel}` : style.checkLabel}>Api Recipes
                                     <input className={style.option} onChange={handleType} type='checkbox' value="API" />
                                 </label>
                             </div>
