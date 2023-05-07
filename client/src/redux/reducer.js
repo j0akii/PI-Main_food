@@ -1,14 +1,15 @@
-import { FILTER_DIETS, ORDERING, GET_ID_RECIPES, GET_NAME_RECIPES, GET_ALL_DIETS, GET_ALL_RECIPES, UPDATE_SELECTED_DIETS, FILTER_TYPE } from "./actions";
+import { FILTER_DIETS, ORDERING, GET_ID_RECIPES, GET_NAME_RECIPES, GET_ALL_DIETS, GET_ALL_RECIPES, UPDATE_SELECTED_DIETS, FILTER_TYPE, VALIDATION_ERRORS } from "./actions";
 
 
 const initialState = {
-    allRecipes: [],
-    idRecipe: [],
-    nameRecipes: [],
-    allDiets: [],
-    filtredRecipes: [],
-    selectedDiets: [],
-}
+  allRecipes: [],
+  idRecipe: [],
+  nameRecipes: [],
+  allDiets: [],
+  filtredRecipes: [],
+  selectedDiets: [],
+  valErrors: [],
+};
 
 
 const rootReducer = (state = initialState, actions) => {
@@ -147,7 +148,17 @@ const rootReducer = (state = initialState, actions) => {
             ...state,
             filtredRecipes: state.allRecipes.filter((recipe) => typeof recipe.id === 'number' && recipe)
           };
-        } 
+        }
+
+      case VALIDATION_ERRORS:
+        console.log(state.valErrors);
+        return {
+          ...state,
+          valErrors: {
+            ...state.valErrors,
+            [Object.keys(actions.payload)]: actions.payload[Object.keys(actions.payload)],
+          }
+        };
 
 
       default:

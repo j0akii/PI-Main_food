@@ -9,6 +9,7 @@ export const FILTER_DIETS = 'FILTER_DIETS';
 export const UPDATE_SELECTED_DIETS = 'UPDATE_SELECTED_DIETS';
 export const FILTER_TYPE = 'FILTER_TYPE';
 export const ORDERING = 'ORDERING';
+export const VALIDATION_ERRORS = 'VALIDATION_ERRORS';
 
 const URL_END = 'http://localhost:3001';
 
@@ -117,5 +118,14 @@ export const filterTypeRecipes = (value) => {
   return {
     type: FILTER_TYPE,
     payload: value,
+  }
+}
+
+// Para guardar los errores de las validaciones del form
+
+export const setValidationErrors = (obj) => {
+  return {
+    type: VALIDATION_ERRORS,
+    payload: obj,
   }
 }

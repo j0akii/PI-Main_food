@@ -1,6 +1,6 @@
 import React from 'react'
 import style from './Diets.module.css'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllDiets } from '../../redux/actions';
 
@@ -13,7 +13,6 @@ export default function Diets () {
         dispatch(getAllDiets());
     }, [dispatch]);
 
-    console.log(diets)
 
     return (
         <div className="container">

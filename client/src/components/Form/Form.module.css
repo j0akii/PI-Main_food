@@ -53,6 +53,12 @@
     padding-bottom: 1rem;
 }
 
+.containerInput {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .containerInput2 {
     display: flex;
     flex-direction: column;
@@ -73,6 +79,12 @@
     width: 35rem;
 }
 
+.error {
+    font-size: .8rem;
+    width: 100%;
+    color: rgb(202, 2, 2);
+}
+
 .inputGen {
     background: var(--color-golden);
     border: 3px solid var(--color-black);
@@ -80,6 +92,14 @@
     box-shadow: 0 0 .9rem .1rem var(--color-shadow-2);
     padding: .5rem;
     margin: .5rem;
+}
+
+.inputGenCont {
+    height: 4.7rem;
+}
+
+.inputTextCont {
+    height: 16.6rem;
 }
 
 .option {
@@ -104,6 +124,7 @@
 
 .dietsCont.show {
     max-height: 8.3rem;
+    margin-bottom: 1.6rem;
 }
 
 .checkLabel {
@@ -144,6 +165,13 @@
     width: 35rem;
     height: 3rem;
     z-index: 1;
+    margin-bottom: 1.6rem;
+}
+
+.btnHide {
+    pointer-events: none;
+    background: var(--color-golden-darker);
+    outline: 3px solid var(--color-golden-darker);
 }
 
 .btn::before {
