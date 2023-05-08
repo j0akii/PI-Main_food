@@ -11,17 +11,27 @@ export default function Detail () {
     const getRecipe = useSelector(state => state.idRecipe);
     const recipe = getRecipe.length ? getRecipe[0] : {};
     const [summary, setSummary] = useState([]);
+    // const [diets, setDiets] = useState([]);
     const [showMoreState, setShowMoreState] = useState(true);
 
     const showMore = () => {
         setShowMoreState(!showMoreState)
     }
 
-    useEffect( () => {
-        dispatch(getIdRecipes(id))
+    useEffect(() => {
+        dispatch(getIdRecipes(id));
     }, [dispatch])
 
-    useEffect( () => {
+    // useEffect(() => {
+    //     const getDiets = async () => {
+    //         const diets = await recipe.diets && recipe.diets.map((diet) => '#' + diet + ', ');
+    //         const dietsFinal = [...diets.slice(0, -1), diets[diets.length -1].slice(0, -2)];
+    //         setDiets([dietsFinal]);
+    //     }
+    //     getDiets();
+    // }, [recipe.diets])
+
+    useEffect(() => {
         const getSummary = async () => {
             const summary = await recipe.summary && parse(recipe.summary);
             setSummary([summary]);
@@ -46,7 +56,7 @@ export default function Detail () {
                         <div className={style.separator3}></div>
                     </div>
                     <h3 className={style.data}>{summary}</h3>
-                    <h3 className={style.h2}>{recipe.diets}</h3>
+                    {/* <h3 className={style.h2}>{diets}</h3> */}
                     <button className={style.btn} onClick={showMore}>
                         <span className={`${style.text} ${style.text_1}`}>Show Step By Step<i class='bx bxs-down-arrow-square'></i></span>
                         <span className={`${style.text} ${style.text_2}`} aria-hidden="true">Show Step By Step<i class='bx bxs-down-arrow-square'></i></span>

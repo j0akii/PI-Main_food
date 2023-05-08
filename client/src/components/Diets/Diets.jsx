@@ -10,21 +10,22 @@ export default function Diets () {
     const diets = useSelector(state => state.allDiets);
 
     useEffect(() => {
-        dispatch(getAllDiets());
+        dispatch(getAllDiets()).then(() => console.log(diets));
     }, [dispatch]);
 
 
     return (
         <div className="container">
-            {diets.map((diet) => {
-                return (
-                    <div className="diet">
-                        <h1 className="name">
-                            {diet.name}
-                        </h1>
-                    </div>
-                )
-            })}
+                {diets.map((diet) => {
+                    return (
+                        <div className="diet">
+                            <h1 className="name">
+                                {diet.name}
+                            </h1>
+                        </div>
+                    )
+                })
+            }
         </div>
     )
 }

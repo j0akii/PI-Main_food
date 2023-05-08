@@ -1,4 +1,5 @@
 require('dotenv').config();
+const axios = require("axios");
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
@@ -30,26 +31,24 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Para relacionarlos hacemos un destructuring
 const { Recipe, Diet } = sequelize.models;
 
-const initialDiets = [
-  { name: "gluten free" },
-  { name: "ketogenic" },
-  { name: "lacto ovo vegetarian" },
-  { name: "vegan" },
-  { name: "pescetarian" },
-  { name: "paleolithic" },
-  { name: "fodmap friendly" },
-  { name: "dairy free" },
-  { name: "primal" },
-  { name: "whole 30" },
-];
+const add = async () => {
+  const getDB = await Diet.findAll();
+  const data = getDB.map((diet) => diet.dataValues.name);
 
-const add = () => {
-  sequelize.sync().then(() => {
-    Diet.bulkCreate(initialDiets)
-      .then(() => console.log('succesful'))
-      .catch((err) => console.log('error:', err))
-  });
-}
+  if (data.length < 1) {
+    const initialDiets = await axios("http://localhost:3001/diets");
+    const finalDiets = initialDiets.data.map((diet) => {
+      return {
+        name: diet,
+      };
+    });
+    sequelize.sync().then(() => {
+      Diet.bulkCreate(finalDiets)
+        .then(() => console.log("succesful"))
+        .catch((err) => console.log("error:", err));
+    });
+  };
+};
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
@@ -60,5 +59,5 @@ Diet.belongsToMany(Recipe, { through: 'recipeTypes' });
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize, // para importart la conexión { conn } = require('./db.js');
-  add,     
+  add,
 };

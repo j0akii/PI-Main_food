@@ -58,11 +58,11 @@ export const getAllDiets = () => {
    return async (dispatch) => {
      try {
        const endPoint = `${URL_END}/diets/`;
-       const response = await axios.get(endPoint);
-       return dispatch({
-         type: GET_ALL_DIETS,
-         payload: response.data,
-       });
+       const response = await axios(endPoint);
+        return dispatch({
+          type: GET_ALL_DIETS,
+          payload: response.data,
+        });
      } catch (error) {
        console.log(error.message);
      }

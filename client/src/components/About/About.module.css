@@ -1,0 +1,92 @@
+.container {
+    background: url('../../images/Landing-2.jpg');
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 60%;
+    background: var(--color-dark);
+    color: var(--color-white);
+    padding: 3rem;
+    border: .2rem solid var(--color-golden);
+    outline: .5rem solid var(--color-dark);
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 72%;
+}
+
+.h1 {
+    font-size: var(--fontSize-headline-1);
+    font-family: var(--fontFamily-forum);
+}
+
+.separator {
+    width: 80%;
+    height: .5rem;
+    background: transparent;
+    border-top: .15rem solid var(--color-golden);
+}
+
+.separator_2 {
+    width: 75%;
+    height: .5rem;
+    background: transparent;
+    border-top: .15rem solid var(--color-golden);
+    padding-bottom: 3rem;
+}
+
+@media (max-width: 1315px) {
+    .title {
+        width: 90%;
+    }
+}
+
+@media (max-width: 950px) {
+    .title {
+        width: 100%;
+    }
+}
+
+@media (max-width: 870px) {
+    .containerInfo {
+        max-width: 80%;
+    }
+}
+
+@media (max-width: 586px) {
+    .containerInfo {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 516px) {
+    .containerInfo {
+        max-width: 100%;
+        border: none;
+        border-top: .2rem solid var(--color-golden);
+        border-bottom: .2rem solid var(--color-golden);
+        outline: .5rem solid var(--color-dark);
+    }
+}
+
+@media (max-width: 420px) {
+    .h1 {
+        font-size: var(--fontSize-title-1);
+    }
+
+    .content {
+        font-size: var(--fontSize-nav-1);
+    }
+}

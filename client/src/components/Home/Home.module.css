@@ -187,6 +187,10 @@
     margin: 1rem;
     width: 6rem;
     height: 6rem;
+    border-radius: 1rem;
+    border: 3px solid transparent;
+    outline: 3px solid var(--color-golden);
+    object-fit: cover;
 }
 
 .card .content {
@@ -242,6 +246,12 @@
 }
 
 @media (max-width: 1069px) {
+    .recomendated .container .card .img {
+        border-radius: 2rem;
+        border: none;
+        outline: none;
+    }
+
     .head .p {
         width: 98%;
     }

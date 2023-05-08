@@ -1,18 +1,13 @@
 import style from './Card.module.css';
 import { NavLink } from 'react-router-dom';
-import { addFav, removeFav, getIdRecipes } from "../../redux/actions";
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 
 export default function Card({
         id,
         name,
         image,
-        summary,
         healthScore,
         price,
-        stepByStep,
         diets,
     }) {
 

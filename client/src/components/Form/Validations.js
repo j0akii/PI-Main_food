@@ -1,7 +1,8 @@
     export default function Validations (type, errors, setErrors) {
       const validateURL = /^(ftp|http|https):\/\/[^ "]+$/;
-      const validateName = /^[A-Za-z]+$/;
+      const validateName = /^[a-zA-Z\s]*$/;
       const validateNumber = /^\d*$/;
+      const validateNumberFloat = /^\d+(\.\d+)*$/;
 
       // Recipe Name Validation:
 
@@ -26,7 +27,7 @@
       // Recipe Price Validation:
 
       if (type.price.length) {
-        if (validateNumber.test(type.price) === false) {
+        if (validateNumberFloat.test(type.price) === false) {
           setErrors({
             price: "* The price can only contain numbers",
           });

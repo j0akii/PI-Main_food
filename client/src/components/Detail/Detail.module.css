@@ -106,7 +106,6 @@
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
-
 .btn {
     position: relative;
     overflow: hidden;
@@ -184,13 +183,27 @@
     overflow: hidden;
     color: var(--color-white);
     font-family: var(--fontFamily-forum);
-    background: var(--color-black);
     transition: max-height .5s ease;
 }
 
 .active {
     max-height: 20rem;
     opacity: 1;
-    padding: 2rem;
     transition: max-height .5s ease;
+}
+
+@media (max-width: 972px) {
+    .container {
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .containerContent {
+        flex-direction: column;
+    }
+    .img {
+        padding-top: 3rem;
+        border-radius: 0;
+        width: 100%;
+        background: var(--color-dark);
+    }
 }

@@ -228,3 +228,126 @@
     font-size: 1.9rem;
     margin-left: .2rem;
 }
+
+@media (max-width: 868px) {
+    .title {
+        padding-top: 8rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .separator {
+        width: 75%;
+    }
+    .separator_style {
+        width: 70%;
+    }
+    .containerInput {
+        flex-direction: column;
+        align-items: center;
+    }
+    .containerInput2 {
+        flex-direction: column;
+        align-items: center;
+    }
+    .input {
+        width: 30rem;
+    }
+    .input2 {
+        width: 100%;
+    }
+    .inputGen {
+        width: 30rem;
+    }
+    .inputGenCont {
+        width: 30rem;
+        margin-right: 1rem;
+    }
+    .btn {
+        width: 30rem;
+    }
+    .dietsCont {
+        width: 30rem;
+    }
+}
+
+@media (max-width: 506px) {
+    .input {
+        width: 25rem;
+    }
+
+    .input2 {
+        width: 100%;
+    }
+
+    .inputGen {
+        width: 25rem;
+    }
+
+    .inputGenCont {
+        width: 25rem;
+        margin-right: 1rem;
+    }
+
+    .btn {
+        width: 25rem;
+    }
+
+    .dietsCont {
+        width: 25rem;
+    }
+}
+
+@media (max-width: 424px) {
+    .input {
+        width: 20rem;
+    }
+
+    .input2 {
+        width: 100%;
+    }
+
+    .inputGen {
+        width: 20rem;
+    }
+
+    .inputGenCont {
+        width: 20rem;
+        margin-right: 1rem;
+    }
+
+    .btn {
+        width: 20rem;
+    }
+
+    .dietsCont {
+        width: 20rem;
+    }
+}
+
+@media (max-width: 333px) {
+    .input {
+        width: 18rem;
+    }
+
+    .input2 {
+        width: 100%;
+    }
+
+    .inputGen {
+        width: 18rem;
+    }
+
+    .inputGenCont {
+        width: 18rem;
+        margin-right: 1rem;
+    }
+
+    .btn {
+        width: 18rem;
+    }
+
+    .dietsCont {
+        width: 18rem;
+    }
+}
