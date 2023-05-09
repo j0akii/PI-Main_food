@@ -47,10 +47,6 @@ export default function NavBar() {
                 <a className={currentPath.includes('/Recipes') ? style.act : style.a}>Recipes</a>
                 <div className={style.separator}></div>
             </NavLink>
-            <NavLink to={'/Diets'} className={style.link}>
-                <a className={currentPath === '/Diets' ? style.act : style.a}>Diets</a>
-                <div className={style.separator}></div>
-            </NavLink>
             <NavLink to={'/About'} className={style.link}>
                 <a className={currentPath === '/About' ? style.act : style.a}>About</a>
             </NavLink>

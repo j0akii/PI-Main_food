@@ -6,57 +6,57 @@ const URL_API = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_
 
 // Obtengo los datos de la API:
 
-const getApi = () => {
-      const allRecipes = data.map((recipe) => {
-        return {
-          id: recipe.id,
-          name: recipe.name,
-          image: recipe.image,  
-          healthScore: recipe.healthScore,
-          price: recipe.price,
-          diets: recipe.diets?.map((diet) => diet),
-          summary: recipe.summary,
-          stepByStep: recipe.stepByStep 
-        };
-      });
-
-      return allRecipes;
-};
-
-// const getApi = async () => {
-//   try {
-//     const apiData = await axios.get(URL_API);
-//     const { results } = apiData.data
-
-//     if (results.length > 0) {
-//       const allRecipes = await results?.map((recipe) => {
+// const getApi = () => {
+//       const allRecipes = data.map((recipe) => {
 //         return {
 //           id: recipe.id,
-//           name: recipe.title,
-//           image: recipe.image,
+//           name: recipe.name,
+//           image: recipe.image,  
 //           healthScore: recipe.healthScore,
-//           price: recipe.pricePerServing,
+//           price: recipe.price,
 //           diets: recipe.diets?.map((diet) => diet),
 //           summary: recipe.summary,
-//           stepByStep:
-//             recipe.analyzedInstructions[0] &&
-//             recipe.analyzedInstructions[0].steps
-//               ? recipe.analyzedInstructions[0].steps
-//                   .map((item) => item.step)
-//                   .join(" \n")
-//               : "",
+//           stepByStep: recipe.stepByStep 
 //         };
-//       })
+//       });
 
-//       return allRecipes
-//     }
-//   }
-//   catch (error) {
-//     const errorMessage = 'There was an error during de petition to the API: ' + error.message;
-//     console.log(errorMessage);
-//     return;
-//   }
+//       return allRecipes;
 // };
+
+const getApi = async () => {
+  try {
+    const apiData = await axios.get(URL_API);
+    const { results } = apiData.data
+
+    if (results.length > 0) {
+      const allRecipes = await results?.map((recipe) => {
+        return {
+          id: recipe.id,
+          name: recipe.title,
+          image: recipe.image,
+          healthScore: recipe.healthScore,
+          price: recipe.pricePerServing,
+          diets: recipe.diets?.map((diet) => diet),
+          summary: recipe.summary,
+          stepByStep:
+            recipe.analyzedInstructions[0] &&
+            recipe.analyzedInstructions[0].steps
+              ? recipe.analyzedInstructions[0].steps
+                  .map((item) => item.step)
+                  .join(" \n")
+              : "",
+        };
+      })
+
+      return allRecipes
+    }
+  }
+  catch (error) {
+    const errorMessage = 'There was an error during de petition to the API: ' + error.message;
+    console.log(errorMessage);
+    return;
+  }
+};
 
 // Obtengo los datos de la base de datos:
 

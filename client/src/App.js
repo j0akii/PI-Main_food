@@ -4,7 +4,6 @@ import Home from './components/Home/Home'
 import NavBar from './components/NavBar/NavBar'
 import Recipes from './components/Recipes/Recipes'
 import About from './components/About/About'
-import Diets from './components/Diets/Diets'
 import Footer from './components/Footer/Footer'
 import Detail from "./components/Detail/Detail"
 import Form from "./components/Form/Form"
@@ -35,8 +34,6 @@ function App() {
         <Route path="/Recipes" element={<Recipes />} />
 
         <Route path="/Recipes/Detail/:id" element={<Detail />} />
-
-        <Route path="/Diets" element={<Diets />} />
 
         <Route path="/About" element={<About />} />
 
