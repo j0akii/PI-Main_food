@@ -15,9 +15,8 @@ export default function Home () {
         nav('/Recipes')
     }
     
-    const navigationId = (req) => {
-        console.log(req)
-        nav(`/Detail/${req}`)
+    const navigationId = (id) => {
+        nav(`/Recipes/Detail/${id}`)
     }
 
     useEffect(() => {
@@ -42,7 +41,7 @@ export default function Home () {
                 <h1 className={style.h1}>House <span className={style.span}>Recommendations</span></h1>
 
                 <div className={style.container}>
-                    <div className={style.card} onClick={navigationId}>
+                    <div className={style.card} onClick={() => navigationId(recipes.length && recipes[0].id)}>
                         <img className={style.img} src={recipes.length && recipes[0].image}/>
                         <div className={style.content}>
                             <div className={style.title}>
@@ -53,7 +52,7 @@ export default function Home () {
                             <p className={style.p}>{recipes.length && recipes[0].summary}</p>
                         </div>
                     </div>
-                    <div className={style.card} onClick={navigationId}>
+                    <div className={style.card} onClick={() => navigationId(recipes.length && recipes[1].id)}>
                         <img className={style.img} src={recipes.length && recipes[1].image}/>
                         <div className={style.content}>
                             <div className={style.title}>
@@ -64,7 +63,7 @@ export default function Home () {
                             <p className={style.p}>{recipes.length && recipes[1].summary}</p>
                         </div>
                     </div>
-                    <div className={style.card} onClick={navigationId}>
+                    <div className={style.card} onClick={() => navigationId(recipes.length && recipes[2].id)}>
                         <img className={style.img} src={recipes.length && recipes[2].image}/>
                         <div className={style.content}>
                             <div className={style.title}>
@@ -75,7 +74,7 @@ export default function Home () {
                             <p className={style.p}>{recipes.length && recipes[2].summary}</p>
                         </div>
                     </div>
-                    <div className={style.card} onClick={navigationId}>
+                    <div className={style.card} onClick={() => navigationId(recipes.length && recipes[3].id)}>
                         <img className={style.img} src={recipes.length && recipes[3].image}/>
                         <div className={style.content}>
                             <div className={style.title}>
@@ -86,7 +85,7 @@ export default function Home () {
                             <p className={style.p}>{recipes.length && recipes[3].summary}</p>
                         </div>
                     </div>
-                    <div className={style.card} onClick={navigationId}>
+                    <div className={style.card} onClick={() => navigationId(recipes.length && recipes[4].id)}>
                         <img className={style.img} src={recipes.length && recipes[4].image}/>
                         <div className={style.content}>
                             <div className={style.title}>
@@ -97,7 +96,7 @@ export default function Home () {
                             <p className={style.p}>{recipes.length && recipes[4].summary}</p>
                         </div>
                     </div>
-                    <div className={style.card} onClick={navigationId}>
+                    <div className={style.card} onClick={() => navigationId(recipes.length && recipes[5].id)}>
                         <img className={style.img} src={recipes.length && recipes[5].image}/>
                         <div className={style.content}>
                             <div className={style.title}>
