@@ -83,7 +83,7 @@ router.post('/', async (req, res) => {
       recipeCreated.addDiets(dietDB);
       res.json({ message: 'The recipe was succesfully created', recipeCreated: recipeCreated });
 
-    } 
+    }
 
     catch (error) {
       res.status(404).send(error);
