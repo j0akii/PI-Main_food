@@ -56,7 +56,7 @@ export default function Detail () {
                         <div className={style.separator3}></div>
                     </div>
                     <h3 className={style.data}>{summary}</h3>
-                    {/* <h3 className={style.h2}>{diets}</h3> */}
+                    <h3 className={style.h2}>{recipe.diets}</h3>
                     <button className={style.btn} onClick={showMore}>
                         <span className={`${style.text} ${style.text_1}`}>Show Step By Step<i class='bx bxs-down-arrow-square'></i></span>
                         <span className={`${style.text} ${style.text_2}`} aria-hidden="true">Show Step By Step<i class='bx bxs-down-arrow-square'></i></span>

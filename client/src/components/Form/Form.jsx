@@ -4,7 +4,6 @@ import axios from 'axios'
 import Validations from './Validations'
 import { useSelector, useDispatch } from 'react-redux'
 import { setValidationErrors } from '../../redux/actions'
-// import PopUp from '../PopUp/PopUp'
 
 
 export default function Form (props) {

@@ -114,7 +114,7 @@ export default function Recipes () {
 
     useEffect(() => {
         setDietsFilter();
-        console.log(selectedFilter)
+        setCurrentPage(1);
     }, [selectedDiets])
 
     useEffect(() => {
