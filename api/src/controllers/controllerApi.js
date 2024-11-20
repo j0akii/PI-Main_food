@@ -1,7 +1,7 @@
-const axios = require('axios');
+const axios = require("axios");
 const { API_KEY } = process.env;
-const { Recipe, Diet } = require('../db');
-const { data } = require('./data');
+const { Recipe, Diet } = require("../db");
+const { data } = require("./data");
 const URL_API = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=100&addRecipeInformation=true`;
 
 // Obtengo los datos de la API:
@@ -11,12 +11,12 @@ const URL_API = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_
 //         return {
 //           id: recipe.id,
 //           name: recipe.name,
-//           image: recipe.image,  
+//           image: recipe.image,
 //           healthScore: recipe.healthScore,
 //           price: recipe.price,
 //           diets: recipe.diets?.map((diet) => diet),
 //           summary: recipe.summary,
-//           stepByStep: recipe.stepByStep 
+//           stepByStep: recipe.stepByStep
 //         };
 //       });
 
@@ -26,7 +26,7 @@ const URL_API = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_
 const getApi = async () => {
   try {
     const apiData = await axios.get(URL_API);
-    const { results } = apiData.data
+    const { results } = apiData.data;
 
     if (results.length > 0) {
       const allRecipes = await results?.map((recipe) => {
@@ -46,13 +46,13 @@ const getApi = async () => {
                   .join(" \n")
               : "",
         };
-      })
+      });
 
-      return allRecipes
+      return allRecipes;
     }
-  }
-  catch (error) {
-    const errorMessage = 'There was an error during de petition to the API: ' + error.message;
+  } catch (error) {
+    const errorMessage =
+      "There was an error during de petition to the API: " + error.message;
     console.log(errorMessage);
     return;
   }
@@ -63,11 +63,11 @@ const getApi = async () => {
 const getData = async () => {
   try {
     const getDB = await Recipe.findAll({
-    include: {
-      model: Diet,
-      atrributes: ['name'],
-      through: {
-          atrributes: ['id', 'name'],
+      include: {
+        model: Diet,
+        atrributes: ["name"],
+        through: {
+          atrributes: ["id", "name"],
         },
       },
     });
@@ -86,16 +86,16 @@ const getData = async () => {
     });
 
     return allRecipes;
-
-  }
-  catch (error) {
-    const errorMessage = 'There was an error during de petition to the Data Base "Food": ' + error.message;
+  } catch (error) {
+    const errorMessage =
+      'There was an error during de petition to the Data Base "Food": ' +
+      error.message;
     console.log(errorMessage);
     return;
-  };
+  }
 };
 
 module.exports = {
-    getApi,
-    getData
-}
+  getApi,
+  getData,
+};
